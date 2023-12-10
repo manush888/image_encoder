@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <title>Image to Text Encoder / Text to Image Decoder</title>
   <style>
-    /* Your provided CSS styles here */
-    /* ... */
-
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -15,20 +12,19 @@
       display: flex;
     }
 
-
     #sidebar {
       width: 50px;
       background: #f3f3f3;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      transition: width 0.3s ease;
-      padding-top: 20px;
+      justify-content: center;
+      transition: width 0.5s ease;
     }
 
     #sidebar:hover {
-      width: 150px;
+      width: 100px;
+      transition: 1s cubic-bezier(0.45, -0.51, 0.17, 0.96);
     }
 
     .toggle {
@@ -38,7 +34,8 @@
     }
 
     .toggle:hover {
-      transform: scale(1.2);
+      transform: scale(1.5);
+      transition: 1s;
     }
 
     #main {
@@ -46,6 +43,7 @@
       padding: 20px;
       transition: margin 0.3s ease;
       overflow: hidden;
+      transition: 1s;
     }
 
     .section {
@@ -107,7 +105,8 @@
 
     .darkMode #main {
       background-color: #222;
-      color: #fff;
+      color: #000000;
+      transition: 1s;
     }
 
     .darkMode #sidebar {
@@ -115,22 +114,19 @@
     }
 
     .darkMode #sidebar:hover {
-      width: 150px;
+      width: 100px;
+      transition: 1s cubic-bezier(0.45, -0.51, 0.17, 0.96);
     }
   </style>
-
 </head>
 <body>
-  <!-- Sidebar -->
   <div id="sidebar">
-    <div class="toggle" onclick="toggleDarkMode()">☽</div>
-    <div class="toggle" onclick="showEncodeSection()">Encode</div>
-    <div class="toggle" onclick="showDecodeSection()">Decode</div>
+    <div class="toggle" onclick="toggleDarkMode()">🌓</div>
+    <div class="toggle" onclick="showEncodeSection()">🔒</div>
+    <div class="toggle" onclick="showDecodeSection()">🔓</div>
   </div>
-  
-  <!-- Main Content Area -->
+
   <div id="main">
-    <!-- Encoding Section -->
     <div id="encode" class="section active">
       <h1>Image to Text Encoder</h1>
       <input type="file" id="fileInput">
@@ -140,38 +136,31 @@
       <textarea id="encodedText" placeholder="Encoded Text" readonly></textarea>
     </div>
 
-    <!-- Decoding Section -->
     <div id="decode" class="section">
       <h1>Text to Image Decoder</h1>
       <textarea id="decodedText" placeholder="Enter encoded text"></textarea>
       <button onclick="decodeText()">Decode Text</button>
       <br>
       <img id="decodedImage" src="" alt="Decoded Image">
-      <a href="#" id="downloadLink" download="decoded_image.png"><button>Download Image</button></a>
     </div>
   </div>
 
-  <!-- JavaScript Section -->
   <script>
-    // Toggle Dark Mode
     function toggleDarkMode() {
       const body = document.body;
       body.classList.toggle('darkMode');
     }
 
-    // Show Encoding Section
     function showEncodeSection() {
       document.getElementById('encode').classList.add('active');
       document.getElementById('decode').classList.remove('active');
     }
 
-    // Show Decoding Section
     function showDecodeSection() {
       document.getElementById('decode').classList.add('active');
       document.getElementById('encode').classList.remove('active');
     }
 
-    // Encode Image (Placeholder - Add your encoding logic here)
     function encodeImage() {
       const fileInput = document.getElementById('fileInput');
       const file = fileInput.files[0];
@@ -183,23 +172,18 @@
           image.src = event.target.result;
           document.getElementById('preview').src = event.target.result;
 
-          // Placeholder for encoding logic
-          // This example sets the encoded text as the image data URL
           document.getElementById('encodedText').value = event.target.result;
         };
         reader.readAsDataURL(file);
       }
     }
 
-    // Decode Text (Placeholder - Add your decoding logic here)
     function decodeText() {
       const decodedText = document.getElementById('decodedText').value;
+      const decodedImage = document.getElementById('decodedImage');
 
-      // Placeholder for decoding logic
-      // This example sets the decoded image source as the entered text
-      document.getElementById('decodedImage').src = decodedText;
+      decodedImage.src = decodedText;
     }
   </script>
 </body>
 </html>
-
